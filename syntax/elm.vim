@@ -5,21 +5,17 @@ if exists('b:current_syntax')
 endif
 
 " Keywords
-syn keyword elmConditional else if of then
+syn keyword elmConditional case else if of then
 syn keyword elmAlias alias
-syn keyword elmTypedef contained type port
-syn keyword elmImport contained exposing as import module where
+syn keyword elmTypedef type port let in
+syn keyword elmImport exposing as import module where
 
 " Operators
-syn match elmOperator contained "\([-!#$%`&\*\+./<=>\?@\\^|~:]\|\<_\>\)"
+syn match elmOperator "\([-!#$%`&\*\+./<=>\?@\\^|~:]\|\<_\>\)"
 
 " Types
 syn match elmType "\<[A-Z][0-9A-Za-z_'-]*"
 syn keyword elmNumberType number
-
-" Modules
-syn match elmModule "\<\([A-Z][0-9A-Za-z_'-\.]*\)\+\.[A-Za-z]"me=e-2
-syn match elmModule "^\(module\|import\)\s\+[A-Z][0-9A-Za-z_'-\.]*\(\s\+as\s\+[A-Z][0-9A-Za-z_'-\.]*\)\?\(\s\+exposing\)\?" contains=elmImport
 
 " Delimiters
 syn match elmDelimiter  "[,;]"
@@ -31,7 +27,7 @@ syn match elmTupleFunction "\((,\+)\)"
 " Comments
 syn keyword elmTodo TODO FIXME XXX contained
 syn match elmLineComment "--.*" contains=elmTodo,@spell
-syn region elmComment matchgroup=elmComment start="{-|\=" end="-}" contains=elmTodo,elmComment,@spell fold
+syn region elmComment matchgroup=elmComment start="{-|\=" end="-}" contains=elmTodo,elmComment,@spell
 
 " Strings
 syn match elmStringEscape "\\u[0-9a-fA-F]\{4}" contained
@@ -79,7 +75,6 @@ hi def link elmAlias Delimiter
 hi def link elmOperator Operator
 hi def link elmType Identifier
 hi def link elmNumberType Identifier
-hi def link elmModule Type
 
 syn sync minlines=500
 
